@@ -4,7 +4,7 @@ import { Card, Accordion} from "react-bootstrap"
 const PoliciesScreen = () => {
   return (
     <>
-      <div className="mx-5 mt-3 mission-statement p-3">
+      <div className="mx-3 mt-3 mission-statement p-3">
         <p className="h1">Our Mission:</p>
         <p className="text-muted">To our customers:</p>
         <p>
