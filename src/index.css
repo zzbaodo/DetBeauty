@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Global setting */
+a {
+  outline: none !important;
+}
+.body::-webkit-scrollbar {
+  display: none;
+}
+a.dropdown-item {
+  background-color: white !important;
+  padding: 0px;
+}
+
+body {
+  margin: 0;
+}
+nav {
+  padding: 0 !important;
+}
+.nav-link {
+  font-size: 0.8rem;
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+}
+
+.navbar-nav {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+.navbar-toggle {
+  margin-right: 20px !important;
+}
+
+.showcase {
+  min-height: 80vh !important;
+  max-width: 100%;
+}
+.ombre {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.ombre:hover {
+  background-color: grey;
+  text-decoration: none;
+}
+
+#services-dropdown {
+  position: relative;
+  padding-right: 0px;
+  box-sizing: border-box;
+  border: none;
+  margin-left: 25px;
+  margin-right: 0;
+}
+.services-ombre {
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.services-accordion {
+  cursor: pointer;
+}
+
+.services-ombre:hover {
+  background-color: lightgrey;
+}
+.services-accordion:hover {
+  background-color: lightgrey;
+}
+
+.carousel-image {
+  max-width: 100%;
+  height: auto;
+  background-position: center;
+}
+.carousel-caption-edit {
+  color: white !important;
+}
+.header-artist {
+  background-color: white !important;
+
+  display: block;
+}
+.contact-form-link {
+  transition: all 300ms ease-in-out !important;
+  font-size: 15px;
+  margin: 5px;
+}
+a.contact-form-link:hover {
+  transform: scale(1.1) !important;
+  text-decoration: none !important;
+}
+.contact-form {
+  border-radius: 1px solid black;
+  border-radius: 10px;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.shop-title {
+  font-weight: 900;
+}
+.mission-statement {
+  border: 1px dotted grey;
+}
+.booking-image {
+  display: block;
+  width: 90vw;
+  border-radius: 20px;
+  margin: 15px auto;
+  object-fit: contain;
+}
+
+/* For Phone in portrait mode */
+@media (max-width: 575.98px) {
+  .carousel-caption-edit {
+    font-size: 15px;
+    color: white !important;
+    font-weight: bold !important;
+  }
+  p.carousel-caption-edit {
+    display: none;
+  }
+  .header__search-button {
+    display: block !important;
+  }
+  .contact-form {
+    width: 90%;
+  }
+  #services-dropdown {
+    margin-left: 0px;
+  }
+  /* .bt-search-box{
+    display: none !important;
+  } */
+  /* .custom-search-bar{
+    display: visible !important;
+  } */
+}
