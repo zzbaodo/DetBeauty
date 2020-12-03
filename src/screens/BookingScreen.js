@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Image, Form, Button, Container } from "react-bootstrap"
+import { Form, Button, Container } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 const BookingScreen = () => {
@@ -9,7 +9,7 @@ const BookingScreen = () => {
       <img
         src="https://irp-cdn.multiscreensite.com/e5100667/dms3rep/multi/cos+tat+page+feathering.jpg"
         className="booking-image"
-        
+        alt='tattoo artist'
       />
       <Container>
         <h2 className='mt-5'>Agreement</h2>
