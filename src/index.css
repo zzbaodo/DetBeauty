@@ -6,6 +6,7 @@
 a {
   outline: none !important;
 }
+
 .body::-webkit-scrollbar {
   display: none;
 }
@@ -94,6 +95,7 @@ a.contact-form-link:hover {
   transform: scale(1.1) !important;
   text-decoration: none !important;
 }
+
 .contact-form {
   border-radius: 1px solid black;
   border-radius: 10px;
@@ -113,7 +115,17 @@ a.contact-form-link:hover {
   margin: 15px auto;
   object-fit: contain;
 }
-
+.contact-container{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  transition: all 300ms ease-in-out !important;
+  margin-top: 5px;
+}
+.contact-container:hover{
+  transform: scale(1.1) !important;
+  
+}
 /* For Phone in portrait mode */
 @media (max-width: 575.98px) {
   .carousel-caption-edit {
