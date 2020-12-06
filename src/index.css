@@ -115,16 +115,15 @@ a.contact-form-link:hover {
   margin: 15px auto;
   object-fit: contain;
 }
-.contact-container{
+.contact-container {
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: flex-start;
   transition: all 300ms ease-in-out !important;
   margin-top: 5px;
 }
-.contact-container:hover{
+.contact-container:hover {
   transform: scale(1.1) !important;
-  
 }
 /* For Phone in portrait mode */
 @media (max-width: 575.98px) {
@@ -145,10 +144,7 @@ a.contact-form-link:hover {
   #services-dropdown {
     margin-left: 0px;
   }
-  /* .bt-search-box{
+  .contact-icons {
     display: none !important;
-  } */
-  /* .custom-search-bar{
-    display: visible !important;
-  } */
+  }
 }

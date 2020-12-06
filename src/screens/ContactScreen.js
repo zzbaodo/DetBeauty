@@ -13,7 +13,7 @@ const ContactScreen = () => {
           really appreciate your feedback!
         </p>
         <div className="contact-container">
-          <RoomIcon />
+          <RoomIcon className="contact-icons" />
           <div>
             {" "}
             <a
@@ -25,7 +25,7 @@ const ContactScreen = () => {
           </div>
         </div>
         <div className="contact-container">
-          <MailOutlineIcon />
+          <MailOutlineIcon className="contact-icons" />
           <div>
             {" "}
             <a
@@ -37,7 +37,7 @@ const ContactScreen = () => {
           </div>
         </div>
         <div className="contact-container">
-          <PhoneIcon />
+          <PhoneIcon className="contact-icons" />
           <div>
             {" "}
             <a href="tel:3072202949" className="contact-form-link">
