@@ -53,7 +53,7 @@ const BookingScreen = () => {
               }}
             />
 
-            <Link to="/scheduleapp">
+            <Link to="/schedule">
               <Button disabled={!agree} className="mr-auto  my-3">
                 Book An Appointment
               </Button>

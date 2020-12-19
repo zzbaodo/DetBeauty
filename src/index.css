@@ -110,9 +110,7 @@ a.contact-form-link:hover {
 
 .booking-image {
   display: block;
-  width: 90vw;
-  border-radius: 20px;
-  margin: 15px auto;
+  width: 100vw;
   object-fit: contain;
 }
 .contact-container {

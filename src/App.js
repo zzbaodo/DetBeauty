@@ -7,6 +7,7 @@ import InfoScreen from "./screens/InfoScreen"
 import PoliciesScreen from "./screens/PoliciesScreen"
 import PortfolioScreen from "./screens/PortfolioScreen"
 import ContactScreen from "./screens/ContactScreen"
+import ScheduleScreen from "./screens/ScheduleScreen"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/info" component={InfoScreen} />
       <Route path="/home"  component={HomeScreen} />
       <Route path="/" exact component={HomeScreen} />
+      <Route path="/schedule" component={ScheduleScreen}/>
     </Router>
   )
 }
