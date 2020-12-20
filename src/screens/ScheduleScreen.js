@@ -5,7 +5,6 @@ const ScheduleScreen = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
-  const [message, setMessage] = useState("")
   const [service, setService] = useState("null")
   const [price, setPrice] = useState("null")
   const [alert, setAlert] = useState(false)
@@ -32,7 +31,6 @@ const ScheduleScreen = () => {
   }
   return (
     <div className="scheduleForm-container">
-      {alert && <Alert variant="danger">{alert}</Alert>}
       <Form>
         <Form.Group controlId="exampleForm.ControlInput1">
           <Form.Label>Name</Form.Label>
@@ -61,7 +59,7 @@ const ScheduleScreen = () => {
             onChange={(e) => setPhone(e.target.value)}
           />
         </Form.Group>
-
+        {alert && <Alert variant="danger">{alert}</Alert>}
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>Services</Form.Label>
           <Form.Control
@@ -86,7 +84,9 @@ const ScheduleScreen = () => {
               marginTop: "5px",
             }}
           >
-            <InfoIcon style={{ fill: "#d4d4d4", fontSize: "15px" }} />
+            <InfoIcon
+              style={{ fill: "#d4d4d4", fontSize: "15px", marginTop: "1px" }}
+            />
             <p className="d-block" style={{}}>
               Note: If you would like to schedule for multiple services per
               visit, please contact us via our email:{" "}
@@ -106,21 +106,14 @@ const ScheduleScreen = () => {
               <InputGroup.Text>$</InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl
+              style={{ backgroundColor: "#f7f7f9" }}
               id="inlineFormInputGroupUsername"
               placeholder={price}
+              readOnly
             />
           </InputGroup>
         </Form.Group>
-        <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Additional Comments</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            placeholder="Optional"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-        </Form.Group>
+       
 
         <Button onClick={onSubmitHandler}>Submit</Button>
       </Form>
