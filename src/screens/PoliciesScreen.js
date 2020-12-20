@@ -9,7 +9,7 @@ const PoliciesScreen = () => {
         <p className="text-muted">To our customers:</p>
         <p>
           At <span className="shop-title"> DET Beauty</span>, we are committed
-          to provide the best possible experience for our clients. It is our
+          to provide the best of possible experiences for our clients. It is our
           very responsibility to make sure that all aspects of the procedures
           are clear to you, such that anything left unaddressed should be
           notified to us immediately. Your participation and compliance to the
@@ -27,8 +27,7 @@ const PoliciesScreen = () => {
             <Card.Body>
               A $50 Non-Refundable deposit is required for all services at DET
               Beauty. This will apply toward the total cost of your appointment.
-              Please understand that a deposit is there to ensure that you are
-              committed to your appointment, and allows us to dedicate this time
+              Please understand that a deposit is there to ensure your commitment for the appointment, and allows us to dedicate this time
               slot just for you. Deposit can be transferred to a different day,
               granted that the appointment is being rescheduled two days prior
               to the actual date of the appointment.
