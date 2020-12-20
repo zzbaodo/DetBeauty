@@ -1,28 +1,28 @@
 import React, { useState } from "react"
 import { Form } from "react-bootstrap"
-import firebase from "../firebase"
+
 import InfoIcon from "@material-ui/icons/Info"
 const ScheduleScreen = () => {
-  const db = firebase.firestore()
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [message, setMessage] = useState("")
-//   const onSubmitHandler = async (e) => {
-//     e.preventDefault()
-//     const data = {
-//       name,
-//       email,
-//       message,
-//     }
-//     const res = await db.collection("appointment").doc(email).set(data)
-//     if (res) {
-//       console.log("success")
-//     } else {
-//       console.log("failed")
-//     }
-//     console.log("submit!")
-//   }
+  //   const onSubmitHandler = async (e) => {
+  //     e.preventDefault()
+  //     const data = {
+  //       name,
+  //       email,
+  //       message,
+  //     }
+  //     const res = await db.collection("appointment").doc(email).set(data)
+  //     if (res) {
+  //       console.log("success")
+  //     } else {
+  //       console.log("failed")
+  //     }
+  //     console.log("submit!")
+  //   }
   return (
     <div className="scheduleForm-container">
       <Form>
@@ -65,12 +65,21 @@ const ScheduleScreen = () => {
             <option>Classic Liner</option>
             <option>Smokey Liner</option>
           </Form.Control>
-          <div style={{ display: "flex", alignContent: "center", fontSize:'12px' }}>
+          <div
+            style={{
+              display: "flex",
+              alignContent: "center",
+              fontSize: "12px",
+            }}
+          >
             <InfoIcon style={{ fill: "#d4d4d4" }} />
-            <p className="d-block">
+            <p className="d-block" style={{ marginTop: "5px" }}>
               Note: If you would like to schedule for multiple services per
               visit, please contact us via our email:{" "}
-              <a href="mailto:detbeautycomp@gmail.com" style={{textDecoration:'underline'}}>
+              <a
+                href="mailto:detbeautycomp@gmail.com"
+                style={{ textDecoration: "underline" }}
+              >
                 detbeautycomp@gmail.com
               </a>
             </p>
