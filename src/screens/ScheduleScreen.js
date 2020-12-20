@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Form, Container } from "react-bootstrap"
+import { Form } from "react-bootstrap"
 import firebase from "../firebase"
 import InfoIcon from "@material-ui/icons/Info"
 const ScheduleScreen = () => {
@@ -8,21 +8,21 @@ const ScheduleScreen = () => {
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [message, setMessage] = useState("")
-  const onSubmitHandler = async (e) => {
-    e.preventDefault()
-    const data = {
-      name,
-      email,
-      message,
-    }
-    const res = await db.collection("appointment").doc(email).set(data)
-    if (res) {
-      console.log("success")
-    } else {
-      console.log("failed")
-    }
-    console.log("submit!")
-  }
+//   const onSubmitHandler = async (e) => {
+//     e.preventDefault()
+//     const data = {
+//       name,
+//       email,
+//       message,
+//     }
+//     const res = await db.collection("appointment").doc(email).set(data)
+//     if (res) {
+//       console.log("success")
+//     } else {
+//       console.log("failed")
+//     }
+//     console.log("submit!")
+//   }
   return (
     <div className="scheduleForm-container">
       <Form>
