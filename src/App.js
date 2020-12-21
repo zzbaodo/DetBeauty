@@ -8,6 +8,8 @@ import PoliciesScreen from "./screens/PoliciesScreen"
 import PortfolioScreen from "./screens/PortfolioScreen"
 import ContactScreen from "./screens/ContactScreen"
 import ScheduleScreen from "./screens/ScheduleScreen"
+import ConsentFormScreen from './screens/ConsentFormScreen'
+import DepositScreen from "./screens/DepositScreen"
 
 function App() {
   return (
@@ -19,8 +21,10 @@ function App() {
       <Route path="/contact" component={ContactScreen} />
       <Route path="/info" component={InfoScreen} />
       <Route path="/home"  component={HomeScreen} />
-      <Route path="/" exact component={HomeScreen} />
       <Route path="/schedule" component={ScheduleScreen}/>
+      <Route path="/consentform" component={ConsentFormScreen}/>
+      <Route path="/deposit" component={DepositScreen}/>
+      <Route path="/" exact component={HomeScreen} />
     </Router>
   )
 }
