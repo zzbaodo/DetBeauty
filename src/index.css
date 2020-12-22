@@ -107,6 +107,14 @@ a.contact-form-link:hover {
   padding: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+.deposit-form {
+  border-radius: 1px solid black;
+  border-radius: 10px;
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 .shop-title {
   font-weight: 900;
 }
@@ -207,6 +215,14 @@ a.contact-form-link:hover {
   border: none;
   padding: 0.75rem 1.5rem;
 }
+.venmoIcon-desc {
+  margin-bottom: 10px !important;
+}
+.venmoLogo > img {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
 /* .timeSlot {
   width: 300px;
   margin: 10px auto;
@@ -263,5 +279,8 @@ a.contact-form-link:hover {
   }
   .acknowledgement {
     font-size: medium;
+  }
+  .deposit-form {
+    width: 80%;
   }
 }

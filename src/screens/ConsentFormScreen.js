@@ -53,7 +53,11 @@ const ConsentFormScreen = ({ history }) => {
       setquestion17(user.quest17)
     }
   }, [user])
-
+  useEffect(()=>{
+    if (user.service === 'empty'){
+        history.push('/schedule')
+    }
+  },[history, user])
   const emailValidation = () => {
     if (
       !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -169,6 +173,7 @@ const ConsentFormScreen = ({ history }) => {
               onChange={setPhone}
             />
           </Form.Group>
+          <hr/>
           <h2 style={{ textAlign: "center", padding: "10px" }}>Consent Form</h2>
           <Form.Group>
             <Form.Label>Are you 18 years old or above?</Form.Label>
@@ -424,7 +429,7 @@ const ConsentFormScreen = ({ history }) => {
               onChange={(e) => setquestion17(!question17)}
             ></Form.Check>
           </Form.Group>
-          <Button block onClick={onSubmitHandler}>
+          <Button block onClick={onSubmitHandler} className="mb-3">
             Continue
           </Button>
           {alert && <Alert variant="danger">{alert}</Alert>}

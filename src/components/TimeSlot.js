@@ -66,7 +66,7 @@ const TimeSlot = ({ time }) => {
   return (
     <div className="timeSlot">
       <div>
-        <Form.Label style={{ fontWeight: "900" }}>Available Times</Form.Label>
+        <Form.Label style={{ fontWeight: "900" }}>Available Times:</Form.Label>
         <br />
         {timeArr.length > 0 ? (
           timeArr.map((item) => {

@@ -66,7 +66,7 @@ const ScheduleScreen = ({ history }) => {
         <Form>
           {alert && <Alert variant="danger">{alert}</Alert>}
           <Form.Group controlId="exampleForm.ControlSelect1" className="my-0">
-            <Form.Label style={{ fontWeight: "900" }}>Services</Form.Label>
+            <Form.Label style={{ fontWeight: "900" }}>Services:</Form.Label>
             <Form.Control
               as="select"
               value={service}
@@ -108,7 +108,7 @@ const ScheduleScreen = ({ history }) => {
             </div>
           </Form.Group>
           <Form.Group>
-            <Form.Label style={{ fontWeight: "900" }}>Total:</Form.Label>
+            <Form.Label style={{ fontWeight: "900" }}>Price:</Form.Label>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text>$</InputGroup.Text>
@@ -121,7 +121,7 @@ const ScheduleScreen = ({ history }) => {
               />
             </InputGroup>
           </Form.Group>
-          <Form.Label style={{ fontWeight: "900" }}>Select a date</Form.Label>
+          <Form.Label style={{ fontWeight: "900" }}>Select a date:</Form.Label>
           <Row className="mb-3">
             <Col md={8} sm={12}>
               <div className="calendar-container">
