@@ -31,7 +31,7 @@ const TimeSlot = ({ time }) => {
         }
       })
       console.log(times)
-      const displayTimes = times.forEach((time) => {
+      const displayTimes = times.map((time) => {
         if (time === timeAt10AM) {
           return "10 AM"
         } else if (time === timeAt1PM) {
@@ -39,8 +39,8 @@ const TimeSlot = ({ time }) => {
         } else if (time === timeAt4PM) {
           return "4 PM"
         }
+        return setTimeArr(displayTimes)
       })
-      setTimeArr(displayTimes)
     } catch (error) {
       console.error(error)
     }
@@ -50,41 +50,42 @@ const TimeSlot = ({ time }) => {
     // eslint-disable-next-line
   }, [time])
 
-//   const onSubmitHandler = (e) => {
-//     e.preventDefault()
-//     const data = {
-//       date: time,
-//       appTime: time + 3600,
-//       createdAt: Math.floor(Date.now() / 1000),
-//     }
-//     try {
-//       db.collection("appointment").doc().set(data)
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
+  //   const onSubmitHandler = (e) => {
+  //     e.preventDefault()
+  //     const data = {
+  //       date: time,
+  //       appTime: time + 3600,
+  //       createdAt: Math.floor(Date.now() / 1000),
+  //     }
+  //     try {
+  //       db.collection("appointment").doc().set(data)
+  //     } catch (error) {
+  //       console.error(error)
+  //     }
+  //   }
   return (
     <div className="timeSlot">
       <div>
         <Form.Label style={{ fontWeight: "900" }}>Available Times</Form.Label>
         <br />
         {timeArr.length > 0 ? (
-          timeArr.map((item) =>{
-           return(
-            <div key={item}>
-              <label>
-                <input
-                  type="radio"
-                  value={` ${item}`}
-                  checked={selectedOption === item}
-                  onChange={(e) => setSelectedOption(e.target.value)}
-                />
-                {item}
-              </label>
-              <br />
-            </div>
-          )
-          })) : (
+          timeArr.map((item) => {
+            return (
+              <div key={item}>
+                <label>
+                  <input
+                    type="radio"
+                    value={` ${item}`}
+                    checked={selectedOption === item}
+                    onChange={(e) => setSelectedOption(e.target.value)}
+                  />
+                  {item}
+                </label>
+                <br />
+              </div>
+            )
+          })
+        ) : (
           <p>No time available</p>
         )}
       </div>
