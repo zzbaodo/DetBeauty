@@ -1,11 +1,11 @@
-import React, { useState } from "react"
-import {
-  Form,
-  Button,
-  Alert,
-} from "react-bootstrap"
+import React, { useState, useContext, useEffect } from "react"
+import { Form, Button, Alert } from "react-bootstrap"
 import MultiStepHeader from "../components/MultiStepHeader"
-const ConsentFormScreen = ({history}) => {
+import CentralContext from "../context/centralContext"
+const ConsentFormScreen = ({ history }) => {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
   const [question1, setquestion1] = useState("")
   const [question2, setquestion2] = useState("")
   const [question3, setquestion3] = useState("")
@@ -24,6 +24,34 @@ const ConsentFormScreen = ({history}) => {
   const [question16, setquestion16] = useState(false)
   const [question17, setquestion17] = useState(false)
   const [alert, setAlert] = useState()
+  const centralContext = useContext(CentralContext)
+  const { user, submitConsentForm } = centralContext
+  useEffect(() => {
+    if (user.name) {
+      setName(user.name)
+      setEmail(user.email)
+      setPhone(user.phone)
+      setquestion1(user.quest1)
+      setquestion2(user.quest2)
+      setquestion3(user.quest3)
+      setquestion4(user.quest4)
+      setquestion5(user.quest5)
+      setquestion6(user.quest6)
+      setquestion7(user.quest7)
+      setquestion8(user.quest8)
+      setquestion9(user.quest9)
+      setquestion10(user.quest10)
+      setquestion11(user.quest11)
+      setquestion12(user.quest12)
+      setquestion13(user.quest13)
+      setquestion14(user.quest14)
+      setquestion15(user.quest15)
+      setquestion16(user.quest16)
+      setquestion17(user.quest17)
+  
+    }
+  }, [user])
+
   const onSubmitHandler = (e) => {
     e.preventDefault()
     if (
@@ -61,14 +89,67 @@ const ConsentFormScreen = ({history}) => {
       )
       return
     }
+    const data = {
+      name,
+      email,
+      phone,
+      question1,
+      question2,
+      question3,
+      question4,
+      question5,
+      question6,
+      question7,
+      question8,
+      question9,
+      question10,
+      question11,
+      question12,
+      question13,
+      question14,
+      question15,
+      question16,
+      question17,
+    }
+    submitConsentForm(data)
     history.push("/deposit")
   }
 
   return (
     <>
-      <MultiStepHeader secondStep thirdStep="inactive" />
+      <MultiStepHeader
+        secondStep={["available", "active"]}
+        thirdStep="inactive"
+      />
       <Form>
         <div className="consentForm-container">
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput2">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput3">
+            <Form.Label>Phone</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="xxx-xxx-xxxx"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </Form.Group>
           <h2 style={{ textAlign: "center", padding: "10px" }}>Consent Form</h2>
           <Form.Group>
             <Form.Label>Are you 18 years old or above?</Form.Label>

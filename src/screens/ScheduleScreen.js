@@ -1,15 +1,29 @@
-import React, { useState, useEffect } from "react"
-import { Form, Button, Alert, InputGroup, FormControl } from "react-bootstrap"
+import React, { useState, useEffect, useContext } from "react"
+import {
+  Form,
+  Button,
+  Alert,
+  InputGroup,
+  FormControl,
+  Row,
+  Col,
+} from "react-bootstrap"
 import InfoIcon from "@material-ui/icons/Info"
+import CentralContext from "../context/centralContext"
 import MultiStepHeader from "../components/MultiStepHeader"
+import Calendar from "react-calendar"
+import "react-calendar/dist/Calendar.css"
+import moment from "moment"
+// import firebase from "../firebase"
+import TimeSlot from "../components/TimeSlot"
 const ScheduleScreen = ({ history }) => {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
-  const [service, setService] = useState("null")
+  const centralContext = useContext(CentralContext)
+  const { user, selectService } = centralContext
+  const [service, setService] = useState("empty")
   const [price, setPrice] = useState("null")
   const [alert, setAlert] = useState(false)
-
+  const [value, onChange] = useState(new Date())
+  const [time, setTime] = useState(null)
   const priceList = {
     BLL: 350,
     DLR: 380,
@@ -19,81 +33,49 @@ const ScheduleScreen = ({ history }) => {
     SL: 380,
     OPB: 380,
   }
-//   const normalizeInput = (value, previousValue) => {
-//     // return nothing if no value
-//     if (!value) return value
 
-//     // only allows 0-9 inputs
-//     const currentValue = value.replace(/[^\d]/g, "")
-//     const cvLength = currentValue.length
-
-//     if (!previousValue || value.length > previousValue.length) {
-//       // returns: "x", "xx", "xxx"
-//       if (cvLength < 4) return currentValue
-
-//       // returns: "(xxx)", "(xxx) x", "(xxx) xx", "(xxx) xxx",
-//       if (cvLength < 7)
-//         return `(${currentValue.slice(0, 3)}) ${currentValue.slice(3)}`
-
-//       // returns: "(xxx) xxx-", (xxx) xxx-x", "(xxx) xxx-xx", "(xxx) xxx-xxx", "(xxx) xxx-xxxx"
-//       return `(${currentValue.slice(0, 3)}) ${currentValue.slice(
-//         3,
-//         6
-//       )}-${currentValue.slice(6, 10)}`
-//     }
-//   }
+  useEffect(() => {
+    const timeConverted = moment(value).unix()
+    setTime(timeConverted)
+  }, [value])
   useEffect(() => {
     setPrice(priceList[service])
+    setService(user.service)
     // eslint-disable-next-line
-  }, [service])
+  }, [service, user])
   const onSubmitHandler = async (e) => {
     e.preventDefault()
-    if (service === "null") {
+    if (service === "empty") {
       setAlert("Please select a service")
+    } else {
+      history.push("/consentform")
     }
-    history.push("/consentform")
   }
   return (
     <>
-      <MultiStepHeader firstStep />
+      <MultiStepHeader
+        firstStep
+        secondStep={
+          user.service !== "empty"
+            ? ["available", "inactive"]
+            : ["unavailable", "inactive"]
+        }
+        thirdStep="inactive"
+      />
       <div className="scheduleForm-container">
         <Form>
-          <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group controlId="exampleForm.ControlInput2">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="name@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group controlId="exampleForm.ControlInput3">
-            <Form.Label>Phone</Form.Label>
-            <Form.Control
-              type="number"
-              placeholder="xxx-xxx-xxxx"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-          </Form.Group>
           {alert && <Alert variant="danger">{alert}</Alert>}
-          <Form.Group controlId="exampleForm.ControlSelect1">
-            <Form.Label>Services</Form.Label>
+          <Form.Group controlId="exampleForm.ControlSelect1" className="my-0">
+            <Form.Label style={{ fontWeight: "900" }}>Services</Form.Label>
             <Form.Control
               as="select"
               value={service}
-              onChange={(e) => setService(e.target.value)}
+              onChange={(e) => {
+                selectService(e.target.value)
+                setService(e.target.value)
+              }}
             >
-              <option value="null">--Select a service--</option>
+              <option value="empty">--Select a service--</option>
               <option value="OPB">Ombre Powder Brows</option>
               <option value="BLL">Baby Lip Lush</option>
               <option value="DLR">Dark Lip Revitalization</option>
@@ -126,7 +108,7 @@ const ScheduleScreen = ({ history }) => {
             </div>
           </Form.Group>
           <Form.Group>
-            <Form.Label>Total:</Form.Label>
+            <Form.Label style={{ fontWeight: "900" }}>Total:</Form.Label>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text>$</InputGroup.Text>
@@ -139,8 +121,20 @@ const ScheduleScreen = ({ history }) => {
               />
             </InputGroup>
           </Form.Group>
-
-          <Button block onClick={onSubmitHandler}>Continue</Button>
+          <Form.Label style={{ fontWeight: "900" }}>Select a date</Form.Label>
+          <Row className="mb-3">
+            <Col md={8} sm={12}>
+              <div className="calendar-container">
+                <Calendar onChange={onChange} value={value} />
+              </div>
+            </Col>
+            <Col md={4} sm={12} className="mt-2">
+              <TimeSlot time={time} />
+            </Col>
+          </Row>
+          <Button block disabled={!user.service} onClick={onSubmitHandler}>
+            Continue
+          </Button>
         </Form>
         <br />
       </div>
