@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react"
 import firebase from "../firebase"
 import { Form } from "react-bootstrap"
+
 const db = firebase.firestore()
+
 const TimeSlot = ({ time }) => {
   const [timeArr, setTimeArr] = useState([])
   const [selectedOption, setSelectedOption] = useState(null)
@@ -14,33 +16,31 @@ const TimeSlot = ({ time }) => {
       appData.forEach((doc) => {
         timeArray.push(doc.data())
       })
-      const timeAt10AM = time + 36000
+      const timeAt9AM = time + 32400
       const timeAt1PM = time + 46800
-      const timeAt4PM = time + 57600
-      console.log(timeArray)
-      const times = [timeAt10AM, timeAt1PM, timeAt4PM]
-      console.log(times)
+      const timeAt5PM = time + 61200
+      const times = [timeAt9AM, timeAt1PM, timeAt5PM]
       timeArray.forEach((item) => {
         if (
-          item.appTime === timeAt10AM ||
+          item.appTime === timeAt9AM ||
           item.appTime === timeAt1PM ||
-          item.appTime === timeAt4PM
+          item.appTime === timeAt5PM
         ) {
           const index = times.indexOf(item.appTime)
           times.splice(index, 1)
         }
       })
-      console.log(times)
       const displayTimes = times.map((time) => {
-        if (time === timeAt10AM) {
-          return "10 AM"
+        if (time === timeAt9AM) {
+          return "9 AM"
         } else if (time === timeAt1PM) {
           return "1 PM"
-        } else if (time === timeAt4PM) {
-          return "4 PM"
+        } else if (time === timeAt5PM) {
+          return "5 PM"
         }
         return setTimeArr(displayTimes)
       })
+      setTimeArr(displayTimes)
     } catch (error) {
       console.error(error)
     }
@@ -71,18 +71,18 @@ const TimeSlot = ({ time }) => {
         {timeArr.length > 0 ? (
           timeArr.map((item) => {
             return (
-              <div key={item}>
-                <label>
-                  <input
-                    type="radio"
-                    value={` ${item}`}
-                    checked={selectedOption === item}
-                    onChange={(e) => setSelectedOption(e.target.value)}
-                  />
-                  {item}
-                </label>
-                <br />
-              </div>
+              <Form.Group key={item}>
+                <Form.Check
+                  inline
+                  type="radio"
+                  value={item}
+                  id={item}
+                  name={item}
+                  label={item}
+                  checked={selectedOption === item}
+                  onChange={(e) => setSelectedOption(e.target.value)}
+                />
+              </Form.Group>
             )
           })
         ) : (

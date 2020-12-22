@@ -7,6 +7,7 @@ const CentralState = ({ children }) => {
       service: "empty",
       suitable: false,
       date: "",
+      time: "",
       name: "",
       email: "",
       phone: "",

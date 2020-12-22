@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from "react"
 import { Form, Button, Alert } from "react-bootstrap"
+import "react-phone-number-input/style.css"
 import MultiStepHeader from "../components/MultiStepHeader"
 import CentralContext from "../context/centralContext"
+import PhoneInput from "react-phone-number-input"
 const ConsentFormScreen = ({ history }) => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -23,6 +25,7 @@ const ConsentFormScreen = ({ history }) => {
   const [question15, setquestion15] = useState(false)
   const [question16, setquestion16] = useState(false)
   const [question17, setquestion17] = useState(false)
+  const [emailValid, setEmailValid] = useState(true)
   const [alert, setAlert] = useState()
   const centralContext = useContext(CentralContext)
   const { user, submitConsentForm } = centralContext
@@ -48,12 +51,24 @@ const ConsentFormScreen = ({ history }) => {
       setquestion15(user.quest15)
       setquestion16(user.quest16)
       setquestion17(user.quest17)
-  
     }
   }, [user])
 
+  const emailValidation = () => {
+    if (
+      !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        email
+      )
+    ) {
+      setEmailValid(false)
+    } else {
+      setEmailValid(true)
+    }
+  }
+
   const onSubmitHandler = (e) => {
     e.preventDefault()
+
     if (
       question1 === "" ||
       question2 === "" ||
@@ -139,15 +154,19 @@ const ConsentFormScreen = ({ history }) => {
               placeholder="name@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onBlur={emailValidation}
             />
+            {!emailValid && (
+              <Alert variant="danger">{"Please enter a valid email"} </Alert>
+            )}
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlInput3">
             <Form.Label>Phone</Form.Label>
-            <Form.Control
-              type="number"
+            <PhoneInput
               placeholder="xxx-xxx-xxxx"
+              defaultCountry="US"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={setPhone}
             />
           </Form.Group>
           <h2 style={{ textAlign: "center", padding: "10px" }}>Consent Form</h2>
@@ -158,6 +177,7 @@ const ConsentFormScreen = ({ history }) => {
               label="Yes"
               value="yes"
               name="question1"
+              id="question1Yes"
               checked={question1 === "yes"}
               onChange={(e) => setquestion1(e.target.value)}
             ></Form.Check>
@@ -166,6 +186,7 @@ const ConsentFormScreen = ({ history }) => {
               label="No"
               name="question1"
               value="no"
+              id="question1No"
               checked={question1 === "no"}
               onChange={(e) => setquestion1(e.target.value)}
             ></Form.Check>
@@ -179,6 +200,7 @@ const ConsentFormScreen = ({ history }) => {
               label="Yes"
               value="yes"
               name="question2"
+              id="q2y"
               checked={question2 === "yes"}
               onChange={(e) => setquestion2(e.target.value)}
             ></Form.Check>
@@ -187,6 +209,7 @@ const ConsentFormScreen = ({ history }) => {
               label="No"
               name="question2"
               value="no"
+              id="q2n"
               checked={question2 === "no"}
               onChange={(e) => setquestion2(e.target.value)}
             ></Form.Check>
@@ -198,6 +221,7 @@ const ConsentFormScreen = ({ history }) => {
               label="Yes"
               value="yes"
               name="question3"
+              id="q3y"
               checked={question3 === "yes"}
               onChange={(e) => setquestion3(e.target.value)}
             ></Form.Check>
@@ -205,6 +229,7 @@ const ConsentFormScreen = ({ history }) => {
               type="radio"
               label="No"
               name="question3"
+              id="q3n"
               value="no"
               checked={question3 === "no"}
               onChange={(e) => setquestion3(e.target.value)}
@@ -217,6 +242,7 @@ const ConsentFormScreen = ({ history }) => {
               label="Yes"
               value="yes"
               name="question4"
+              id="q4y"
               checked={question4 === "yes"}
               onChange={(e) => setquestion4(e.target.value)}
             ></Form.Check>
@@ -224,6 +250,7 @@ const ConsentFormScreen = ({ history }) => {
               type="radio"
               label="No"
               name="question4"
+              id="q4n"
               value="no"
               checked={question4 === "no"}
               onChange={(e) => setquestion4(e.target.value)}
@@ -236,6 +263,7 @@ const ConsentFormScreen = ({ history }) => {
               label="Yes"
               value="yes"
               name="question5"
+              id="q5y"
               checked={question5 === "yes"}
               onChange={(e) => setquestion5(e.target.value)}
             ></Form.Check>
@@ -243,6 +271,7 @@ const ConsentFormScreen = ({ history }) => {
               type="radio"
               label="No"
               name="question5"
+              id="q5n"
               value="no"
               checked={question5 === "no"}
               onChange={(e) => setquestion5(e.target.value)}
@@ -257,6 +286,7 @@ const ConsentFormScreen = ({ history }) => {
               label="Yes"
               value="yes"
               name="question6"
+              id="q6y"
               checked={question6 === "yes"}
               onChange={(e) => setquestion6(e.target.value)}
             ></Form.Check>
@@ -264,20 +294,20 @@ const ConsentFormScreen = ({ history }) => {
               type="radio"
               label="No"
               name="question6"
+              id="q6n"
               value="no"
               checked={question6 === "no"}
               onChange={(e) => setquestion6(e.target.value)}
             ></Form.Check>
           </Form.Group>
           <hr />
-          <h2 style={{ textAlign: "center", padding: "10px" }}>
-            Acknowledgement
-          </h2>
+          <h2 className="acknowledgement">Acknowledgement</h2>
           <Form.Group>
             <Form.Check
               type="checkbox"
               value="yes"
               name="question7"
+              id="q7"
               label="I understand that this procedure is a permanent change to my skin
               and body"
               checked={question7}
@@ -289,6 +319,7 @@ const ConsentFormScreen = ({ history }) => {
               type="checkbox"
               value="yes"
               name="question8"
+              id="q8"
               label="I allow my tattoo to be photographed and be used for DET Beauty portfolio showcased"
               checked={question8}
               onChange={(e) => setquestion8(!question8)}
@@ -299,6 +330,7 @@ const ConsentFormScreen = ({ history }) => {
               type="checkbox"
               value="yes"
               name="question9"
+              id="q9"
               label="I understand that after my service, there will be no refunds. No exceptions"
               checked={question9}
               onChange={(e) => setquestion9(!question9)}
@@ -309,6 +341,7 @@ const ConsentFormScreen = ({ history }) => {
               type="checkbox"
               value="yes"
               name="question10"
+              id="q10"
               label="I agree that the studio does not have a way of identifying if I am allergic to the elements or ingredients that will be used for my tattoo"
               checked={question10}
               onChange={(e) => setquestion10(!question10)}
@@ -319,6 +352,7 @@ const ConsentFormScreen = ({ history }) => {
               type="checkbox"
               value="yes"
               name="question11"
+              id="q11"
               label="I understand that I need to take care of the tattoo by following the after care instruction to prevent any signs and symptoms of infection that indicate a need to seek medical care given to me by DET Beauty"
               checked={question11}
               onChange={(e) => setquestion11(!question11)}
@@ -329,6 +363,7 @@ const ConsentFormScreen = ({ history }) => {
               type="checkbox"
               value="yes"
               name="question12"
+              id="q12"
               label="I understand that I might get an infection if I don't follow the instructions given to me in regards of taking good care of my tattoo"
               checked={question12}
               onChange={(e) => setquestion12(!question12)}
@@ -339,6 +374,7 @@ const ConsentFormScreen = ({ history }) => {
               type="checkbox"
               value="yes"
               name="question13"
+              id="q13"
               label="I understand that successful color saturation can NOT be guaranteed due to hidden scar tissue. I understand that the proposed procedure(s) involve the inherent risks of the such procedures and possible complications during and/or following the procedures such as : infection, poor color retention and hyper-pigmentation"
               checked={question13}
               onChange={(e) => setquestion13(!question13)}
@@ -349,6 +385,7 @@ const ConsentFormScreen = ({ history }) => {
               type="checkbox"
               value="yes"
               name="question14"
+              id="q14"
               label="I understand that variations in color and design may exist between the chosen shapes and colors selected by me and as ultimately applied to my body"
               checked={question14}
               onChange={(e) => setquestion14(!question14)}
@@ -358,6 +395,7 @@ const ConsentFormScreen = ({ history }) => {
             <Form.Check
               type="checkbox"
               value="yes"
+              id="q15"
               name="question15"
               label="I understand that tattoo inks, dyes, and pigments have not been approved by the federal Food and Drug Administration and that the health consequences of using these products are unknown"
               checked={question15}
@@ -369,6 +407,7 @@ const ConsentFormScreen = ({ history }) => {
               type="checkbox"
               value="yes"
               name="question16"
+              id="q16"
               label="I agree to follow all instructions concerning the care of my tattoo, and that any touch-ups needed because of my own negligence will be done at my own expense"
               checked={question16}
               onChange={(e) => setquestion16(!question16)}
@@ -379,6 +418,7 @@ const ConsentFormScreen = ({ history }) => {
               type="checkbox"
               value="yes"
               name="question17"
+              id="q17"
               label="I confirm that the information I provided in this document is accurate and true"
               checked={question17}
               onChange={(e) => setquestion17(!question17)}

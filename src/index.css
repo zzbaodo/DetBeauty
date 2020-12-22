@@ -197,6 +197,16 @@ a.contact-form-link:hover {
   margin: 10px auto;
   width: 300px;
 }
+.acknowledgement {
+  text-align: center;
+  padding: 10px;
+}
+.PhoneInputInput {
+  background-color: #f7f7f9;
+  font-size: 0.875rem;
+  border: none;
+  padding: 0.75rem 1.5rem;
+}
 /* .timeSlot {
   width: 300px;
   margin: 10px auto;
@@ -250,5 +260,8 @@ a.contact-form-link:hover {
   }
   .consentForm-container {
     width: 90vw;
+  }
+  .acknowledgement {
+    font-size: medium;
   }
 }
