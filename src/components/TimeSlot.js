@@ -31,7 +31,7 @@ const TimeSlot = ({ time }) => {
         }
       })
       console.log(times)
-      const displayTimes = times.map((time) => {
+      const displayTimes = times.forEach((time) => {
         if (time === timeAt10AM) {
           return "10 AM"
         } else if (time === timeAt1PM) {
