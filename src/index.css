@@ -222,7 +222,18 @@ a.contact-form-link:hover {
   width: 100px;
   margin-bottom: 10px;
 }
+.confirm-container {
+  display: flex;
+  justify-content: center;
+}
+.confirm-container > svg {
+  width: 100px !important;
+}
+.modal-content {
+  border: none;
+  border-radius: 10px;
 
+}
 /* .timeSlot {
   width: 300px;
   margin: 10px auto;

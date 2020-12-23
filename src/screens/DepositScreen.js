@@ -1,16 +1,22 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import MultiStepHeader from "../components/MultiStepHeader"
 import CentralContext from "../context/centralContext"
-import { Button} from "react-bootstrap"
+import { Button } from "react-bootstrap"
 import InfoIcon from "@material-ui/icons/Info"
+import CustomedModal from "../components/Modal"
 const DepositScreen = ({ history }) => {
   const centralContext = useContext(CentralContext)
+  const [showModal, setshowModal] = useState(false)
   const { user } = centralContext
   useEffect(() => {
     if (!user.name) {
       history.push("/consentform")
     }
   }, [history, user])
+  const onClickHandler = () => {
+    setshowModal(true)
+  }
+
   return (
     <div>
       <MultiStepHeader
@@ -29,7 +35,11 @@ const DepositScreen = ({ history }) => {
           $50 non-refundable deposit.
         </p>
 
-        <a href="https://venmo.com/huynhNA" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://venmo.com/huynhNA"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <div className="venmoLogo">
             <img src="../../images/venmo.png" alt="venmo icon"></img>
           </div>
@@ -37,7 +47,9 @@ const DepositScreen = ({ history }) => {
         <p>
           After finished, please return to this page to confirm the transaction.
         </p>
-        <Button block>Confirm</Button>
+        <Button block onClick={onClickHandler}>
+          Confirm
+        </Button>
         <div
           style={{
             display: "flex",
@@ -53,6 +65,7 @@ const DepositScreen = ({ history }) => {
             Note: Please make sure to pay the deposit before submitting your
             appointment, otherwise your appointment will be canceled.
           </p>
+          {showModal && <CustomedModal history={history} />}
         </div>
       </div>
     </div>
