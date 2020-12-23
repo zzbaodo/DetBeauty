@@ -21,14 +21,17 @@ const CustomedModal = ({ history }) => {
     <div>
       <>
         <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Thank You for putting your trust in us!</Modal.Title>
+          <Modal.Header className="d-flex flex-column justify-content-center align-items-center">
+            <Modal.Title className='text-center'>Thank You for choosing DET Beauty!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            <p className="d-block text-center">
+              A confirmation email will be sent to you shortly.
+            </p>
             <div className="confirm-container" ref={container}></div>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant="primary" onClick={handleClose}>
               Close
             </Button>
           </Modal.Footer>

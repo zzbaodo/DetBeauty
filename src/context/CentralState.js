@@ -1,16 +1,20 @@
 import React, { useReducer } from "react"
 import centralReducer from "./centralReducer"
 import CentralContext from "./centralContext"
+import moment from "moment"
+import firebase from "../firebase"
 const CentralState = ({ children }) => {
   const initState = {
     user: {
       service: "empty",
-      suitable: false,
       date: "",
+      dateUnix: "",
       time: "",
+      timeUnix: "",
       name: "",
       email: "",
       phone: "",
+      suitable: false,
       quest1: "",
       quest2: "",
       quest3: "",
@@ -28,10 +32,13 @@ const CentralState = ({ children }) => {
       quest15: "",
       quest16: "",
       quest17: "",
+      canvas: "",
+      namePrint: "",
+      dateSign: ''
     },
   }
   const [state, dispatch] = useReducer(centralReducer, initState)
-
+  const db = firebase.firestore()
   //ACTIONS
   const selectService = (service) => {
     if (service === " empty") {
@@ -54,12 +61,41 @@ const CentralState = ({ children }) => {
     })
   }
 
+  const setTime = (data) => {
+    let newData
+    if (data === "9 AM") {
+      newData = 32400
+    } else if (data === "1 PM") {
+      newData = 46800
+    } else if (data === "5 PM") {
+      newData = 61200
+    }
+    dispatch({
+      type: "SET_TIME",
+      payload: { time: data, timeUnix: newData },
+    })
+  }
+  const setDate = (date) => {
+    const dateUnix = moment(date).unix()
+    dispatch({
+      type: "SET_DATE",
+      payload: { date, dateUnix },
+    })
+  }
+  const uploadImage = async (data) => {
+    const image = db.collection("image").doc()
+    await image.set({ dataURL: data })
+  }
+
   return (
     <CentralContext.Provider
       value={{
         user: state.user,
         selectService,
         submitConsentForm,
+        setTime,
+        setDate,
+        uploadImage,
       }}
     >
       {children}

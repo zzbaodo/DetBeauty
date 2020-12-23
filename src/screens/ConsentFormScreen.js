@@ -1,9 +1,10 @@
-import React, { useState, useContext, useEffect } from "react"
-import { Form, Button, Alert } from "react-bootstrap"
+import React, { useState, useContext, useEffect, useRef } from "react"
+import { Form, Button, Alert, Col, Row } from "react-bootstrap"
 import "react-phone-number-input/style.css"
 import MultiStepHeader from "../components/MultiStepHeader"
 import CentralContext from "../context/centralContext"
 import PhoneInput from "react-phone-number-input"
+import SignatureCanvas from "react-signature-canvas"
 const ConsentFormScreen = ({ history }) => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -26,11 +27,18 @@ const ConsentFormScreen = ({ history }) => {
   const [question16, setquestion16] = useState(false)
   const [question17, setquestion17] = useState(false)
   const [emailValid, setEmailValid] = useState(true)
-  const [alert, setAlert] = useState()
+  const [alert, setAlert] = useState("")
+  const [canvas, setCanvas] = useState("")
+  const [namePrint, setNamePrint] = useState("")
+  const [date,setDate] = useState('')
+
   const centralContext = useContext(CentralContext)
   const { user, submitConsentForm } = centralContext
+
+  const sigCanvas = useRef()
+
   useEffect(() => {
-    if (user.name) {
+    if (user.name && user.canvas) {
       setName(user.name)
       setEmail(user.email)
       setPhone(user.phone)
@@ -51,13 +59,17 @@ const ConsentFormScreen = ({ history }) => {
       setquestion15(user.quest15)
       setquestion16(user.quest16)
       setquestion17(user.quest17)
+      setNamePrint(user.namePrint)
+      setDate(user.dateSign)
     }
   }, [user])
-  useEffect(()=>{
-    if (user.service === 'empty'){
-        history.push('/schedule')
+
+  useEffect(() => {
+    if (user.service === "empty") {
+      history.push("/schedule")
     }
-  },[history, user])
+  }, [history, user])
+
   const emailValidation = () => {
     if (
       !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -90,11 +102,14 @@ const ConsentFormScreen = ({ history }) => {
       !question14 ||
       !question15 ||
       !question16 ||
-      !question17
+      !question17 ||
+      !namePrint ||
+      !date
     ) {
       setAlert("There is at least a question left unanswered")
       return
     }
+
     if (
       question1 === "no" ||
       question2 === "yes" ||
@@ -129,8 +144,16 @@ const ConsentFormScreen = ({ history }) => {
       question15,
       question16,
       question17,
+      canvas: canvas,
+      namePrint,
+      dateSign: date
     }
+
+
     submitConsentForm(data)
+    if (!canvas) {
+      return setAlert("Please sign your name")
+    }
     history.push("/deposit")
   }
 
@@ -173,7 +196,7 @@ const ConsentFormScreen = ({ history }) => {
               onChange={setPhone}
             />
           </Form.Group>
-          <hr/>
+          <hr />
           <h2 style={{ textAlign: "center", padding: "10px" }}>Consent Form</h2>
           <Form.Group>
             <Form.Label>Are you 18 years old or above?</Form.Label>
@@ -428,6 +451,35 @@ const ConsentFormScreen = ({ history }) => {
               checked={question17}
               onChange={(e) => setquestion17(!question17)}
             ></Form.Check>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Please sign below:</Form.Label>
+            <br />
+            <SignatureCanvas
+              onChnage={() => {}}
+              ref={sigCanvas}
+              onEnd={() =>
+                setCanvas(
+                  sigCanvas.current.getTrimmedCanvas().toDataURL("image/png")
+                )
+              }
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Please print your name:</Form.Label>
+            <Row>
+              <Col>
+                <Form.Control
+                  type="text"
+                  placeholder="Print Name"
+                  value={namePrint}
+                  onChange={(e) => setNamePrint(e.target.value)}
+                />
+              </Col>
+              <Col>
+                <Form.Control type="date" value={date} onChange={(e)=>{setDate(e.target.value)}} />
+              </Col>
+            </Row>
           </Form.Group>
           <Button block onClick={onSubmitHandler} className="mb-3">
             Continue

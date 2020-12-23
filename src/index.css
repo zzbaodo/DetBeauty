@@ -17,7 +17,9 @@ a.dropdown-item {
   background-color: white !important;
   padding: 0px;
 }
-
+.modal-body {
+  padding-top: 8px !important;
+}
 body {
   margin: 0;
 }
@@ -123,6 +125,7 @@ a.contact-form-link:hover {
   margin: 30px auto;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 20px;
+  border-radius: 10px;
 }
 .booking-image {
   display: block;
@@ -152,12 +155,14 @@ a.contact-form-link:hover {
   padding-left: 20px;
   padding-right: 20px;
   cursor: pointer;
+  text-align: center;
 }
 .secondStep {
   padding: 5px;
   padding-left: 30px;
   padding-right: 30px;
   cursor: pointer;
+  text-align: center;
 }
 .thirdStep {
   padding: 5px;
@@ -197,6 +202,7 @@ a.contact-form-link:hover {
   border-radius: 10px;
   width: 50vw;
   margin: 0 auto;
+  margin-bottom: 20px;
   padding: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -232,7 +238,17 @@ a.contact-form-link:hover {
 .modal-content {
   border: none;
   border-radius: 10px;
-
+}
+.note-text {
+  font-size: 11px !important;
+}
+.time-unavailable > label {
+  text-decoration: line-through !important;
+  
+}
+canvas{
+  background-color: #f7f7f9 !important;
+  margin-bottom: 10px;
 }
 /* .timeSlot {
   width: 300px;
@@ -292,6 +308,6 @@ a.contact-form-link:hover {
     font-size: medium;
   }
   .deposit-form {
-    width: 80%;
+    width: 90%;
   }
 }

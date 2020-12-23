@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import firebase from "../firebase"
 import { Form } from "react-bootstrap"
+import CentralContext from "../context/centralContext"
 
 const db = firebase.firestore()
 
 const TimeSlot = ({ time }) => {
+  const centralContext = useContext(CentralContext)
+  const { setTime, user } = centralContext
   const [timeArr, setTimeArr] = useState([])
+
   const [selectedOption, setSelectedOption] = useState(null)
-  console.log(time)
   const getData = async () => {
     const appRef = db.collection("appointment")
     try {
@@ -45,10 +48,17 @@ const TimeSlot = ({ time }) => {
       console.error(error)
     }
   }
+  useEffect(()=>{
+    setSelectedOption(user.time)
+  },[user.time])
   useEffect(() => {
     getData()
+    if (selectedOption) {
+      setTime(selectedOption)
+    }
     // eslint-disable-next-line
-  }, [time])
+  }, [time, user.date])
+ 
 
   //   const onSubmitHandler = (e) => {
   //     e.preventDefault()
@@ -68,26 +78,51 @@ const TimeSlot = ({ time }) => {
       <div>
         <Form.Label style={{ fontWeight: "900" }}>Available Times:</Form.Label>
         <br />
-        {timeArr.length > 0 ? (
-          timeArr.map((item) => {
-            return (
-              <Form.Group key={item}>
-                <Form.Check
-                  inline
-                  type="radio"
-                  value={item}
-                  id={item}
-                  name={item}
-                  label={item}
-                  checked={selectedOption === item}
-                  onChange={(e) => setSelectedOption(e.target.value)}
-                />
-              </Form.Group>
-            )
-          })
-        ) : (
-          <p>No time available</p>
-        )}
+        <Form.Group>
+          <Form.Check
+            type="radio"
+            value="9 AM"
+            name="9 AM"
+            label="9 AM"
+            className={timeArr.indexOf("9 AM") === -1 && "time-unavailable"}
+            disabled={timeArr.indexOf("9 AM") === -1}
+            checked={selectedOption === "9 AM"}
+            onChange={(e) => {
+              setSelectedOption(e.target.value)
+              setTime(e.target.value)
+            }}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Check
+            type="radio"
+            value="1 PM"
+            name="1 PM"
+            label="1 PM"
+            className={timeArr.indexOf("1 PM") === -1 && "time-unavailable"}
+            disabled={timeArr.indexOf("1 PM") === -1}
+            checked={selectedOption === "1 PM"}
+            onChange={(e) => {
+              setSelectedOption(e.target.value)
+              setTime(e.target.value)
+            }}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Check
+            type="radio"
+            value="5 PM"
+            name="5 PM"
+            label="5 PM"
+            className={timeArr.indexOf("5 PM") === -1 && "time-unavailable"}
+            disabled={timeArr.indexOf("5 PM") === -1}
+            checked={selectedOption === "5 PM"}
+            onChange={(e) => {
+              setSelectedOption(e.target.value)
+              setTime(e.target.value)
+            }}
+          />
+        </Form.Group>
       </div>
     </div>
   )

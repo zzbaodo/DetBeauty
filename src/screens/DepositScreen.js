@@ -59,11 +59,11 @@ const DepositScreen = ({ history }) => {
           }}
         >
           <InfoIcon
-            style={{ fill: "#d4d4d4", fontSize: "15px", marginTop: "1px" }}
+            style={{ fill: "#d9534f", fontSize: "15px", marginTop: "1px", marginRight: '2px' }}
           />
-          <p className="d-block">
+          <p className="d-block text-danger note-text">
             Note: Please make sure to pay the deposit before submitting your
-            appointment, otherwise your appointment will be canceled.
+            appointment. Otherwise your appointment will be canceled.
           </p>
           {showModal && <CustomedModal history={history} />}
         </div>
