@@ -23,7 +23,9 @@ const ScheduleScreen = ({ history }) => {
   const [price, setPrice] = useState("")
   const [alert, setAlert] = useState(false)
   const [value, onChange] = useState(user.date ? user.date : new Date())
-  const [time, setTime] = useState('')
+  const [time, setTime] = useState("")
+ 
+
   const priceList = {
     BLL: 350,
     DLR: 380,
@@ -49,8 +51,8 @@ const ScheduleScreen = ({ history }) => {
     e.preventDefault()
     if (service === "empty") {
       setAlert("Please select a service")
-    }else if (!user.time){
-        setAlert('Please select a date and time for your appointment')
+    } else if (!user.time) {
+      setAlert("Please select a date and time for your appointment")
     } else {
       history.push("/consentform")
     }
@@ -129,7 +131,10 @@ const ScheduleScreen = ({ history }) => {
           <Row className="mb-3">
             <Col md={8} sm={12}>
               <div className="calendar-container">
-                <Calendar onChange={onChange} defaultValue={user.date ? user.date : value} />
+                <Calendar
+                  onChange={onChange}
+                  defaultValue={user.date ? user.date : value}
+                />
               </div>
             </Col>
             <Col md={4} sm={12} className="mt-2">
