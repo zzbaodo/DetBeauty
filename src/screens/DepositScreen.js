@@ -10,7 +10,7 @@ const DepositScreen = ({ history }) => {
   const { user } = centralContext
   useEffect(() => {
     if (!user.name) {
-      history.push("/consentform")
+    //   history.push("/consentform")
     }
   }, [history, user])
   const onClickHandler = () => {
