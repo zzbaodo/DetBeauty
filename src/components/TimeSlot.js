@@ -90,6 +90,7 @@ const TimeSlot = ({ time }) => {
                 value="9 AM"
                 name="9 AM"
                 label="9 AM"
+                id= "9 AM"
                 className={timeArr.indexOf("9 AM") === -1 && "time-unavailable"}
                 disabled={timeArr.indexOf("9 AM") === -1}
                 checked={selectedOption === "9 AM"}
@@ -105,6 +106,7 @@ const TimeSlot = ({ time }) => {
                 value="1 PM"
                 name="1 PM"
                 label="1 PM"
+                id= "1 PM"
                 className={timeArr.indexOf("1 PM") === -1 && "time-unavailable"}
                 disabled={timeArr.indexOf("1 PM") === -1}
                 checked={selectedOption === "1 PM"}
@@ -120,6 +122,7 @@ const TimeSlot = ({ time }) => {
                 value="5 PM"
                 name="5 PM"
                 label="5 PM"
+                id= "5 PM"
                 className={timeArr.indexOf("5 PM") === -1 && "time-unavailable"}
                 disabled={timeArr.indexOf("5 PM") === -1}
                 checked={selectedOption === "5 PM"}

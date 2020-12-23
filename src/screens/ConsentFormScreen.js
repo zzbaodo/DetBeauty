@@ -30,7 +30,7 @@ const ConsentFormScreen = ({ history }) => {
   const [alert, setAlert] = useState("")
   const [canvas, setCanvas] = useState("")
   const [namePrint, setNamePrint] = useState("")
-  const [date,setDate] = useState('')
+  const [date, setDate] = useState("")
 
   const centralContext = useContext(CentralContext)
   const { user, submitConsentForm } = centralContext
@@ -146,9 +146,8 @@ const ConsentFormScreen = ({ history }) => {
       question17,
       canvas: canvas,
       namePrint,
-      dateSign: date
+      dateSign: date,
     }
-
 
     submitConsentForm(data)
     if (!canvas) {
@@ -468,7 +467,7 @@ const ConsentFormScreen = ({ history }) => {
           <Form.Group>
             <Form.Label>Please print your name:</Form.Label>
             <Row>
-              <Col>
+              <Col xs={12} sm={6} className='mb-1'>
                 <Form.Control
                   type="text"
                   placeholder="Print Name"
@@ -476,8 +475,14 @@ const ConsentFormScreen = ({ history }) => {
                   onChange={(e) => setNamePrint(e.target.value)}
                 />
               </Col>
-              <Col>
-                <Form.Control type="date" value={date} onChange={(e)=>{setDate(e.target.value)}} />
+              <Col xs={12} sm={6}>
+                <Form.Control
+                  type="date"
+                  value={date}
+                  onChange={(e) => {
+                    setDate(e.target.value)
+                  }}
+                />
               </Col>
             </Row>
           </Form.Group>

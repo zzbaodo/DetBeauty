@@ -249,6 +249,8 @@ a.contact-form-link:hover {
 canvas{
   background-color: #f7f7f9 !important;
   margin-bottom: 10px;
+  width: 50%;
+  height: 150px;
 }
 /* .timeSlot {
   width: 300px;
@@ -266,6 +268,9 @@ canvas{
   }
   .consentForm-container {
     width: 80vw;
+  }
+  canvas{
+    width: 70%;
   }
 }
 /* For Phone in portrait mode */
@@ -309,5 +314,9 @@ canvas{
   }
   .deposit-form {
     width: 90%;
+  }
+  canvas{
+    width: 95%;
+    height: 120px;
   }
 }
