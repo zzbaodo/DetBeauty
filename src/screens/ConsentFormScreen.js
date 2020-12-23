@@ -454,6 +454,7 @@ const ConsentFormScreen = ({ history }) => {
           <Form.Group>
             <Form.Label>Please sign below:</Form.Label>
             <br />
+
             <SignatureCanvas
               onChnage={() => {}}
               ref={sigCanvas}
@@ -463,11 +464,21 @@ const ConsentFormScreen = ({ history }) => {
                 )
               }
             />
+            <br />
+            <Button
+              size="sm"
+              className="clear-btn"
+              onClick={() => {
+                sigCanvas.current.clear()
+              }}
+            >
+              Clear
+            </Button>
           </Form.Group>
           <Form.Group>
             <Form.Label>Please print your name:</Form.Label>
             <Row>
-              <Col xs={12} sm={6} className='mb-1'>
+              <Col xs={12} sm={6} className="mb-1">
                 <Form.Control
                   type="text"
                   placeholder="Print Name"
@@ -482,6 +493,7 @@ const ConsentFormScreen = ({ history }) => {
                   onChange={(e) => {
                     setDate(e.target.value)
                   }}
+                  placeholder="Date"
                 />
               </Col>
             </Row>
