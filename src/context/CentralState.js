@@ -86,7 +86,11 @@ const CentralState = ({ children }) => {
     const image = db.collection("image").doc()
     await image.set({ dataURL: data })
   }
-
+  const clearData = ()=>{
+    dispatch({
+      type: "CLEAR_DATA"
+    })
+  }
   return (
     <CentralContext.Provider
       value={{
@@ -96,6 +100,7 @@ const CentralState = ({ children }) => {
         setTime,
         setDate,
         uploadImage,
+        clearData
       }}
     >
       {children}

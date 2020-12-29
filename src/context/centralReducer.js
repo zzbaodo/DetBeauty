@@ -46,7 +46,40 @@ export default (state, action) => {
           namePrint: action.payload.namePrint,
           dateSign: action.payload.dateSign,
           canvas: action.payload.canvas,
-          
+        },
+      }
+    case "CLEAR_DATA":
+      return {
+        user: {
+          service: "empty",
+          date: "",
+          dateUnix: "",
+          time: "",
+          timeUnix: "",
+          name: "",
+          email: "",
+          phone: "",
+          suitable: false,
+          quest1: "",
+          quest2: "",
+          quest3: "",
+          quest4: "",
+          quest5: "",
+          quest6: "",
+          quest7: "",
+          quest8: "",
+          quest9: "",
+          quest10: "",
+          quest11: "",
+          quest12: "",
+          quest13: "",
+          quest14: "",
+          quest15: "",
+          quest16: "",
+          quest17: "",
+          canvas: "",
+          namePrint: "",
+          dateSign: "",
         },
       }
     case "SET_TIME":
@@ -55,7 +88,7 @@ export default (state, action) => {
         user: {
           ...state.user,
           time: action.payload.time,
-          timeUnix: +state.user.dateUnix + action.payload.timeUnix
+          timeUnix: +state.user.dateUnix + action.payload.timeUnix,
         },
       }
     case "SET_DATE":
@@ -64,7 +97,7 @@ export default (state, action) => {
         user: {
           ...state.user,
           date: action.payload.date,
-          dateUnix: action.payload.dateUnix
+          dateUnix: action.payload.dateUnix,
         },
       }
     default:

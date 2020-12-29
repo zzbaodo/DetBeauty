@@ -83,7 +83,7 @@ const ScheduleScreen = ({ history }) => {
             >
               <option value="empty">--Select a service--</option>
               <option value="OPB">Ombre Powder Brows</option>
-              <option value="BLL">Baby Lip Lush</option>
+              <option value="BLL">Baby Lip Blush</option>
               <option value="DLR">Dark Lip Revitalization</option>
               <option value="RLB">Restorative Lip Blush</option>
               <option value="LLE">Lash Line Enhancement</option>

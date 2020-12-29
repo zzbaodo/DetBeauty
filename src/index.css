@@ -282,6 +282,9 @@ canvas {
     width: 70%;
   }
 }
+
+
+
 /* For Phone in portrait mode */
 @media (max-width: 575.98px) {
   .carousel-caption-edit {
