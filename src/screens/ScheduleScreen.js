@@ -17,12 +17,14 @@ import moment from "moment"
 // import firebase from "../firebase"
 import TimeSlot from "../components/TimeSlot"
 const ScheduleScreen = ({ history }) => {
+  var d = new Date();
+  d.setHours(0,0,0,0);
   const centralContext = useContext(CentralContext)
   const { user, selectService, setDate } = centralContext
   const [service, setService] = useState("empty")
   const [price, setPrice] = useState("")
   const [alert, setAlert] = useState(false)
-  const [value, onChange] = useState(user.date ? user.date : new Date())
+  const [value, onChange] = useState(user.date ? user.date : d)
   const [time, setTime] = useState("")
  
 
